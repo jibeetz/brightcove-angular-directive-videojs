@@ -1,0 +1,26 @@
+{
+  "name": "brightcove-angular-directive-videojs",
+  "version": "0.0.5",
+  "description": "",
+  "scripts": {
+    "start": "http-server -a localhost -p 1111"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jibeetz/brightcove-angular-directive-videojs.git"
+  },
+  "keywords": [
+    "angular",
+    "brightcove",
+    "videojs"
+  ],
+  "author": "Jean-Baptiste",
+  "license": "UNLICENSE",
+  "bugs": {
+    "url": "https://github.com/jibeetz/brightcove-angular-directive-videojs/issues"
+  },
+  "homepage": "https://github.com/jibeetz/brightcove-angular-directive-videojs#readme",
+  "devDependencies": {
+    "http-server": "~0.8.0"
+  }
+}

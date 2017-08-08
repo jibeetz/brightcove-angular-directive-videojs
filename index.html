@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Brightcove Angular Directive Videojs</title>
+
+    <style>
+
+        .ng-cloak{
+            display: none !important;
+        }
+
+        .video {
+            width: 640px;
+            height: 360px;
+        }
+
+    </style>
+
+</head>
+
+<body ng-app="app" class="ng-cloak">
+
+    <div ng-controller="page">
+
+        <div class="brightcove-async video" video-brightcoveid="{{video.brightcoveVideoId}}" video-uuid="video-{{video.brightcoveVideoId}}"></div>
+
+    </div>
+
+    <script src="//players.brightcove.net/XXXXXXXXXXXXX/default_default/index.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script>
+
+        var app = angular.module('app', []);
+
+        // Controller
+        app.controller('page', ['$scope', function ($scope) {
+
+            $scope.video = {
+                uuid: 1,
+                brightcoveVideoId: XXXXXXXXXXXXX
+            }
+
+        }]);
+
+        // Directive
+        app.directive('brightcoveAsync', [function() {
+            return {
+                restrict: "CA",
+                replace: true,
+                transclude: true,
+                link: function postLink(scope, element, attrs) {
+                    
+                    var myPlayer;
+
+                    var playerHTML = '<video id="' + attrs.videoUuid + '" data-video-id="' + attrs.videoBrightcoveid + '" width="100%" height="100%" data-account="XXXXXXXXXXXXX" data-player="default" data-embed="default"></video>';
+
+                    element[0].innerHTML = playerHTML;
+
+                    bc(document.getElementById(attrs.videoUuid));
+                    
+                    videojs(attrs.videoUuid).ready(function(){
+                        myPlayer = this;
+
+                        myPlayer.on('play', function(){
+                            console.log('video has started');
+                        });
+
+                        myPlayer.on('ended', function(){
+                            console.log('video has ended');
+                        });
+                    });
+                }
+            };
+        }]);
+
+    </script>
+
+</body>
+</html>
